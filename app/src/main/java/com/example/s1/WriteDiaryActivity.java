@@ -2,7 +2,7 @@ package com.example.s1;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
+
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
@@ -23,8 +22,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
@@ -46,6 +43,7 @@ import org.litepal.crud.DataSupport;
 
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,6 +59,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
     private ImageView addPic;
     private ImageView hideSoftInput;
     private ArrayList<String> uris;
+    private TextView timeText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +77,11 @@ public class WriteDiaryActivity extends AppCompatActivity {
         titleText = (TextView) findViewById(R.id.title_text);
         addPic = (ImageView) findViewById(R.id.diary_edit_add_pic_ib);
         hideSoftInput=(ImageView)findViewById(R.id.diary_edit_hideSoftInput_ib);
+        timeText=(TextView)findViewById(R.id.diary_edit_time_tv);
+
+        java.util.Date d=new java.util.Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        timeText.setText(sdf.format(d));
 
         Intent intent = getIntent();
         String exist_diary = intent.getStringExtra("existed_diary");

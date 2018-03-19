@@ -78,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 if(tab==mTablayout.getTabAt(0)){
                     schedule.setIcon(R.mipmap.ic_menu_anniversary);
                 }else if(tab==mTablayout.getTabAt(1)){
-                    news.setIcon(R.mipmap.ic_menu_welfare_black);
+                    news.setIcon(R.mipmap.ic_menu_news_48);
                 }else if(tab==mTablayout.getTabAt(2)){
                     diary.setIcon(R.mipmap.ic_menu_diary);
                 }else if(tab==mTablayout.getTabAt(3)){
-                    control.setIcon(R.mipmap.ic_menu_welfare_white);
+                    control.setIcon(R.mipmap.ic_menu_welfare_black);
                 }
             }
 
@@ -167,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
         diary=mTablayout.getTabAt(2);
         control=mTablayout.getTabAt(3);
 
-        schedule.setIcon(R.mipmap.ic_launcher);
-        news.setIcon(R.mipmap.ic_launcher);
-        diary.setIcon(R.mipmap.ic_launcher);
-        control.setIcon(R.mipmap.ic_launcher);
+        schedule.setIcon(R.mipmap.ic_menu_anniversary_dark);
+        news.setIcon(R.mipmap.ic_menu_welfare_dark);
+        diary.setIcon(R.mipmap.ic_menu_diary_dark);
+        control.setIcon(R.mipmap.ic_menu_welfare_dark);
 
     }
 
