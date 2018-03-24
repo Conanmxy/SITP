@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.s1.R;
+import com.example.s1.newsActivity.NewsFirstRunActivity;
 import com.example.s1.test.TestMainActivity;
 
 /**
@@ -31,7 +32,7 @@ public class ScheduleFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), TestMainActivity.class);
+                Intent intent=new Intent(getActivity(), NewsFirstRunActivity.class);
                 startActivity(intent);
 
             }

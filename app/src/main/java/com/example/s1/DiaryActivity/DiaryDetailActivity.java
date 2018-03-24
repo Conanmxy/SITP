@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.example.s1.R;
 import com.example.s1.Utils.ImageUtils;
 import com.example.s1.Utils.ScreenUtils;
-import com.example.s1.WriteDiaryActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

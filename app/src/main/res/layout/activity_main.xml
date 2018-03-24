@@ -32,24 +32,35 @@
                     app:layout_scrollFlags="scroll|enterAlways|snap"/>
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v4.widget.NestedScrollView
+
+
+
+            <!--修改部分-->
+
+            <!--<android.support.v4.widget.NestedScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:fillViewport="true"-->
+                <!--android:scrollbars="none"-->
+                <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+               <!---->
+
+            <!--</android.support.v4.widget.NestedScrollView>-->
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:fillViewport="true"
-                android:scrollbars="none"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-            </android.support.v4.widget.NestedScrollView>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
+
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#00000000"
@@ -63,15 +74,6 @@
 
         </LinearLayout>
 
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/fab"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#00ff66"-->
-            <!--android:layout_gravity="bottom|end"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:layout_marginBottom="70dp"-->
-            <!--android:src="@drawable/an1"/>-->
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -83,4 +85,5 @@
         android:layout_gravity="start"
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/nav_header"/>
+
 </android.support.v4.widget.DrawerLayout>

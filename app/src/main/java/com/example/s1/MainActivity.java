@@ -1,12 +1,10 @@
 package com.example.s1;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.icu.text.LocaleDisplayNames;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,18 +15,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 
+import com.example.s1.DiaryActivity.WriteDiaryActivity;
+import com.example.s1.Utils.PopWindow;
 import com.example.s1.adapter.MyPagerStateAdapter;
-import com.example.s1.entity.DiaryText;
 import com.example.s1.fragments.ControlFragment;
 import com.example.s1.fragments.DiaryFragment;
 import com.example.s1.fragments.NewsFragment;
 import com.example.s1.fragments.ScheduleFragment;
+import com.example.s1.newsActivity.NewsFirstRunActivity;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,28 +37,23 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout.Tab schedule;
     private TabLayout.Tab control;
     private TabLayout.Tab news;
-    private DrawerLayout mDrawerLayout;
-    private DiaryFragment diaryFragment;
-    private ScheduleFragment scheduleFragment;
-    private NewsFragment newsFragment;
-    private ControlFragment controlFragment;
-    private MyPagerStateAdapter myPagerStateAdapter;
-    private List<Fragment> fragmentList;
+    DrawerLayout mDrawerLayout;
+    DiaryFragment diaryFragment;
+    ScheduleFragment scheduleFragment;
+    NewsFragment newsFragment;
+    ControlFragment controlFragment;
+    MyPagerStateAdapter myPagerStateAdapter;
+    List<Fragment> fragmentList;
+    NavigationView navView;
+    private PopWindow popWindow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //处理toolbar
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
-        ActionBar actionBar=getSupportActionBar();
-        if(actionBar!=null){
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.mipmap.menu_64px);
-        }
+
 
         fragmentList=new ArrayList<>();
         fragmentList.add(scheduleFragment=new ScheduleFragment());
@@ -93,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     schedule.setIcon(R.mipmap.ic_menu_anniversary_dark);
                     mViewPager.setCurrentItem(0);
                 }else if(tab==mTablayout.getTabAt(1)){
-                    news.setIcon(R.mipmap.ic_menu_welfare_dark);
+                    news.setIcon(R.mipmap.news_48_light_green);
                     mViewPager.setCurrentItem(1);
                 }else if(tab==mTablayout.getTabAt(2)){
                     diary.setIcon(R.mipmap.ic_menu_diary_dark);
@@ -109,6 +103,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId()==R.id.setting)
+                {
+                    Intent intent=new Intent(MainActivity.this, NewsFirstRunActivity.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
+
+
     }
 
     private void initViews(){
@@ -116,6 +124,19 @@ public class MainActivity extends AppCompatActivity {
         mViewPager=(ViewPager)findViewById(R.id.viewPager);
         myPagerStateAdapter=new MyPagerStateAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(myPagerStateAdapter);
+        navView=(NavigationView)findViewById(R.id.nav_view);
+
+        //处理toolbar
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+        ActionBar actionBar=getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.mipmap.menu_64px);
+        }
+        navView.setCheckedItem(R.id.nav_call);
+
 //        mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 //            private String[]mTitles=new String[]{"任务","新闻","日记","休息"};
 //            @Override
@@ -185,15 +206,26 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){//有待处理
             case R.id.add:
-                Intent intent=new Intent(MainActivity.this,WriteDiaryActivity.class);
-                intent.putExtra("current_title","新建");
-                startActivity(intent);
+                if(mViewPager.getCurrentItem()==1)
+                {
+                    popWindow=new PopWindow(this);
+                    popWindow.showPopupWindow(findViewById(R.id.add));
+                }
+                else
+                {
+                    Intent intent=new Intent(MainActivity.this,WriteDiaryActivity.class);
+                    intent.putExtra("current_title","新建");
+                    startActivity(intent);
+                }
+
                 break;
 
             case android.R.id.home:
                 Log.d("open","打开");
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
+
+
             default:
                 break;
         }

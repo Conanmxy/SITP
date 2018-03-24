@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.s1.newsActivity.NewsFirstRunActivity"
+    android:background="@drawable/b1"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/title_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="选择您喜欢的新闻类型"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:paddingTop="80dp"
+    android:paddingBottom="80dp"
+    android:layout_marginBottom="150dp"
+    android:layout_below="@+id/title_select"
+    android:layoutAnimation="@anim/animation_slide_right">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/politics"
+            android:background="@drawable/check_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@null" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/politics"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            android:padding="4dp"
+            android:textColor="@color/black"
+            android:text="政治"/>
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+        <CheckBox
+            android:id="@+id/war"
+            android:background="@drawable/check_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@null" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/war"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            android:padding="4dp"
+            android:text="军事"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentRight="true">
+        <CheckBox
+            android:id="@+id/finance"
+            android:background="@drawable/check_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@null" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/finance"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            android:padding="4dp"
+            android:text="财经"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true">
+        <CheckBox
+            android:id="@+id/fun"
+            android:background="@drawable/check_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@null" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fun"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            android:padding="4dp"
+            android:text="娱乐"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true">
+        <CheckBox
+            android:id="@+id/technology"
+            android:background="@drawable/check_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@null" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/technology"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            android:padding="4dp"
+            android:text="科技"/>
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+        <CheckBox
+            android:id="@+id/sport"
+            android:background="@drawable/check_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@null" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/sport"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            android:padding="4dp"
+            android:text="体育"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/finish"
+        android:text="完成"/>
+
+</RelativeLayout>
+
+
+</RelativeLayout>

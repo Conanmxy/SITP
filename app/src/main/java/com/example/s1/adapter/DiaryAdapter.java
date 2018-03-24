@@ -2,7 +2,6 @@ package com.example.s1.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,9 @@ import android.widget.TextView;
 
 import com.example.s1.DiaryActivity.DiaryDetailActivity;
 import com.example.s1.R;
-import com.example.s1.WriteDiaryActivity;
 import com.example.s1.entity.DiaryText;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by Administrator on 2017/10/31.

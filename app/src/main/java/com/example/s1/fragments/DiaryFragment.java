@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 
 import com.example.s1.R;
@@ -38,6 +40,8 @@ public class DiaryFragment extends Fragment {
     private  List<DiaryText>diaryTextList=new ArrayList<>();
     private DiaryAdapter adapter;
     private RecyclerView recyclerView;
+    private int resId;
+    private LayoutAnimationController animationController;
     @Nullable
 
     @Override
@@ -67,6 +71,9 @@ public class DiaryFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         adapter=new DiaryAdapter(diaryTextList);
         recyclerView.setAdapter(adapter);
+        resId=R.anim.animation_slide_right;
+        animationController= AnimationUtils.loadLayoutAnimation(getActivity(),resId);
+        recyclerView.setLayoutAnimation(animationController);
     }
     private void initDiaryText()
     {
@@ -78,6 +85,7 @@ public class DiaryFragment extends Fragment {
     {
         diaryTextList= DataSupport.order("id desc").find(DiaryText.class);
         adapter=new DiaryAdapter(diaryTextList);
+        recyclerView.setLayoutAnimation(animationController);
         recyclerView.setAdapter(adapter);
     }
 

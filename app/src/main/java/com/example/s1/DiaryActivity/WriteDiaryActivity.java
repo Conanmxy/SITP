@@ -1,4 +1,4 @@
-package com.example.s1;
+package com.example.s1.DiaryActivity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.s1.R;
 import com.example.s1.Utils.ImageUtils;
 import com.example.s1.Utils.ScreenUtils;
 import com.example.s1.entity.DiaryText;
@@ -94,7 +95,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
         editText.setSelection(editText.getText().toString().length());
         String title_text = intent.getStringExtra("current_title");
         titleText.setText(title_text);
-        if (title_text.equals("查看"))
+        if (title_text.equals("编辑"))
             left.setText("删除");
         else left.setText("取消");
         right.setText("完成");
@@ -169,7 +170,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
                     finish();
                 }
                 else if (titleText.getText().toString().equals("编辑"))
-                {//取消了修改的功能
+                {//修改的功能
                     DiaryText diaryText = new DiaryText();
                     int currentId = getIntent().getIntExtra("current_id", 0);
 

@@ -7,7 +7,7 @@
         android:title="Call"/>
     <item
         android:icon="@mipmap/ic_menu_setting"
-        android:id="@+id/nav_task"
+        android:id="@+id/setting"
         android:title="设置"/>
 
 
