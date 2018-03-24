@@ -14,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.s1.entity.DiaryText;
 import com.example.s1.newsActivity.NewsFirstRunActivity;
 import com.example.s1.entity.News;
 import com.example.s1.R;
+import com.example.s1.rxjava.RxBus2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,6 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -51,10 +57,12 @@ public class NewsFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("share", MODE_PRIVATE);
         boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun", true);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        register();
         if(isFirstRun)//第一次进入这个app
         {
             editor.putBoolean("isFirstRun",false);
-            editor.commit();
+            editor.apply();
             Intent intent=new Intent(view.getContext(), NewsFirstRunActivity.class);
             startActivity(intent);
         }
@@ -71,7 +79,34 @@ public class NewsFragment extends Fragment {
                 }
             });
         }
+
+
     }
+
+
+    //注册RxBus
+    public void register(){
+        //rxbus
+        RxBus2.getDefault().toObservable(String.class)
+                //在io线程进行订阅，可以执行一些耗时操作
+                .subscribeOn(Schedulers.io())
+                //在主线程进行观察，可做UI更新操作
+                .observeOn(AndroidSchedulers.mainThread())
+                //观察的对象
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String newsKind) {
+                        Log.d("refresh news:",newsKind);
+                        if(newsKind.equals("政治"))
+                        {
+                            refeshNews();
+                        }
+
+
+                    }
+                });
+    }
+
     private void refeshNews()
     {
         new Thread(new Runnable() {
@@ -153,6 +188,7 @@ public class NewsFragment extends Fragment {
             }
         }).start();
     }
+
     private void showResponse(final ArrayList<String> results)
     {
         getActivity().runOnUiThread(new Runnable() {
@@ -192,7 +228,7 @@ public class NewsFragment extends Fragment {
         if(matcher_headline.find())
         {
             String result_link_headline=matcher_headline.group(1);
-            String result_href_headline="http://www.guancha.cn"+result_link_headline;
+            String result_href_headline="http://m.guancha.cn"+result_link_headline;
             results.add(result_href_headline);
 
             String result_title_headline=matcher_headline.group(2);
@@ -210,7 +246,7 @@ public class NewsFragment extends Fragment {
         {
             //加入列表
             String result_link=matcher.group(1);
-            String result_href="http://www.guancha.cn"+result_link;
+            String result_href="http://m.guancha.cn"+result_link;
             results.add(result_href);
 
             String result_title=matcher.group(2);

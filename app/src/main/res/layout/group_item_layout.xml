@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="5dp">
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        tools:text="9月11日"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:id="@+id/week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="今天，星期五"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp"
+        />
+
+</LinearLayout>

@@ -1,20 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/schedule_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/layout_calendar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="任务"
-        android:textSize="30sp"
-        android:layout_gravity="center"/>
-    <Button
-        android:id="@+id/schedule_btn"
-        android:layout_width="wrap_content"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/calendarCenter"
+            style="@style/main_bar_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageButton
+            android:id="@+id/calendarLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:padding="8dp"
+            android:src="@drawable/calendar_month_left"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/calendarRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:padding="8dp"
+            android:src="@drawable/calendar_month_right"
+            tools:ignore="RtlHardcoded" />
+
+        <com.example.s1.calendarviewdemo.CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/calendarCenter"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+
+    <ExpandableListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="写日记"
-        android:layout_gravity="center"/>
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:childDivider="@android:color/transparent"
+        android:drawSelectorOnTop="false"
+        android:groupIndicator="@null"
+        android:scrollbars="none|vertical"
+        tools:ignore="ObsoleteLayoutParam"
+        />
+
 </LinearLayout>

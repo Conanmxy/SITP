@@ -11,13 +11,13 @@
         <!--android:textSize="30sp"-->
         <!--android:layout_gravity="center"/>-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:gravity="center"
-        android:text="新闻源自:观察者网"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="18sp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30sp"-->
+        <!--android:gravity="center"-->
+        <!--android:text="新闻源自:观察者网"-->
+        <!--android:textColor="@android:color/holo_orange_dark"-->
+        <!--android:textSize="18sp" />-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"

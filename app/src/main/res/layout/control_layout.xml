@@ -1,15 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/activity_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F8F8FF"
+    tools:context="com.example.s1.controlActivity.ControlDetailActivity"
+    android:padding="5dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/main_minute"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="少玩点手机..."
-        android:textSize="30sp"
-        android:layout_gravity="center"/>
+        android:textSize="24sp"
+        android:layout_margin="10sp"
+        android:text="选择时间（分钟）">
+
+    </TextView>
+
+    <com.example.s1.entity.WheelView
+        android:id="@+id/main_wvminuute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:layout_margin="10sp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size2"
+            android:textSize="20sp"
+            android:text="小憩\n10:00"
+            android:background="@drawable/btn_style1"
+            android:layout_weight="1"
+            android:textColor="#A9A9A9"
+            android:layout_marginRight="10dip"
+            />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size2"
+            android:textSize="20sp"
+            android:text="午睡\n30:00"
+            android:background="@drawable/btn_style1"
+            android:layout_weight="1"
+            android:textColor="#A9A9A9"
+            android:layout_marginLeft="10dip"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10sp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size2"
+            android:textSize="20sp"
+            android:background="@drawable/btn_style1"
+            android:text="听课\n40:00"
+            android:layout_weight="1"
+            android:textColor="#A9A9A9"
+            android:layout_marginRight="10dip"/>
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size2"
+            android:textSize="20sp"
+            android:text="健身\n60:00"
+            android:background="@drawable/btn_style1"
+            android:layout_weight="1"
+            android:textColor="#A9A9A9"
+            android:layout_marginLeft="10dip"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/main_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_style2"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        android:textColor="#87CEFA"
+        android:text="开始"
+        android:onClick="start" />
+    <!--<Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:background="@drawable/btn_style1"
+        android:text="圆角Button"
+        />-->
 
 </LinearLayout>

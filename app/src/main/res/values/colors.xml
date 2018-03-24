@@ -19,4 +19,5 @@
     <color name="red">#ffff0000</color>
     <color name="transparent">#00000000</color>
     <color name="yellow">#ffffff00</color>
+    <color name="calendar_top_bg">#fff</color>
 </resources>

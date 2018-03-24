@@ -24,10 +24,15 @@ import com.example.s1.fragments.DiaryFragment;
 import com.example.s1.fragments.NewsFragment;
 import com.example.s1.fragments.ScheduleFragment;
 import com.example.s1.newsActivity.NewsFirstRunActivity;
+import com.example.s1.rxjava.RxBus2;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.Manifest;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList;
     NavigationView navView;
     private PopWindow popWindow;
+    ArrayList<Integer>delMenu;
 
 
     @Override
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(controlFragment=new ControlFragment());
         initViews();
         initEvents();
-
+        register();
     }
 
     private void initEvents(){
@@ -125,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         myPagerStateAdapter=new MyPagerStateAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(myPagerStateAdapter);
         navView=(NavigationView)findViewById(R.id.nav_view);
+        delMenu=new ArrayList<Integer>();
 
         //处理toolbar
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -136,50 +143,6 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.mipmap.menu_64px);
         }
         navView.setCheckedItem(R.id.nav_call);
-
-//        mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-//            private String[]mTitles=new String[]{"任务","新闻","日记","休息"};
-//            @Override
-//            public Fragment getItem(int position) {
-//                if(position==0)
-//                    return new ScheduleFragment();
-//                else if(position==1)
-//                    return new NewsFragment();
-//                else if(position==2)
-//                {
-//                    if(diaryFragment==null)
-//                        diaryFragment=new DiaryFragment();
-//                    diaryFragment.show();
-//                    return diaryFragment;
-//                }
-//                else if(position==3)
-//                    return new ControlFragment();
-//                return new ScheduleFragment();
-//            }
-//
-//            @Override
-//            public int getCount() {
-//                return mTitles.length;
-//            }
-//
-//
-//
-//            @Override
-//            public CharSequence getPageTitle(int position){
-//                return mTitles[position];
-//            }
-//
-//            @Override
-//            public void setPrimaryItem(ViewGroup container, int position, Object object) {
-//                mCurrentFragment = (XXXFragment) object;
-//                super.setPrimaryItem(container, position, object);
-//            }
-//
-//
-//            public XXXFragment getCurrentFragment() {
-//                return mCurrentFragment;
-//            }
-//        });
 
         mTablayout.setupWithViewPager(mViewPager);
 
@@ -208,7 +171,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.add:
                 if(mViewPager.getCurrentItem()==1)
                 {
+                    Log.d("before","before");
                     popWindow=new PopWindow(this);
+                    for(int i=0;i<delMenu.size();i++)
+                    {
+                        popWindow.removeView(delMenu.get(i),i);
+                    }
+                    Log.d("later","later");
+
+                  //  popWindow.register();
                     popWindow.showPopupWindow(findViewById(R.id.add));
                 }
                 else
@@ -230,6 +201,29 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+
+
+    //注册RxBus
+    public void register(){
+        //rxbus
+        RxBus2.getDefault().toObservable(ArrayList.class)
+                //在io线程进行订阅，可以执行一些耗时操作
+                .subscribeOn(Schedulers.io())
+                //在主线程进行观察，可做UI更新操作
+                .observeOn(AndroidSchedulers.mainThread())
+                //观察的对象
+                .subscribe(new Action1<ArrayList>() {
+                    @Override
+                    public void call(ArrayList newsKind) {
+                        delMenu=(ArrayList<Integer>) newsKind;
+
+                        Log.d("arraylist news:",Integer.toString(delMenu.size()));
+
+                       // removeView(0,0);
+                    }
+                });
     }
 
 }
