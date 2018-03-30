@@ -38,6 +38,7 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //查询绩点
         CardView queryScore=(CardView)getActivity().findViewById(R.id.query_score);
         queryScore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +49,30 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
-
+      //查询课表
         CardView querySyllabus=(CardView)getActivity().findViewById(R.id.query_syllabus);
+        querySyllabus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getActivity(), SyllabusActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //查询图书
+        CardView queryBook=(CardView)getActivity().findViewById(R.id.query_book);
+        querySyllabus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getActivity(), SyllabusActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //查询我的近期任务
+        CardView queryTask=(CardView)getActivity().findViewById(R.id.query_task);
         querySyllabus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -33,7 +33,9 @@
         <activity android:name=".controlActivity.ControlDetailActivity" />
         <activity android:name=".scheduleActivity.ScoreActivity" />
         <activity android:name=".scheduleActivity.QueryScoreActivity" />
-        <activity android:name=".scheduleActivity.SyllabusActivity"></activity>
+        <activity android:name=".scheduleActivity.SyllabusActivity" />
+        <activity android:name=".scheduleActivity.MyTaskActivity" />
+        <activity android:name=".scheduleActivity.QueryBookActivity"></activity>
     </application>
 
 </manifest>

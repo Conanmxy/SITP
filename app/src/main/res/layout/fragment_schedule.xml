@@ -13,12 +13,10 @@
         android:foreground="?selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         app:cardCornerRadius="0dp"
         app:cardElevation="5dp"
-        android:layout_margin="0dp"
         android:id="@+id/query_score"
+        android:layout_marginTop="10dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,11 +56,10 @@
         android:foreground="?selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+
         app:cardCornerRadius="0dp"
         app:cardElevation="5dp"
-        android:layout_margin="0dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/query_syllabus"
         >
         <LinearLayout
@@ -93,5 +90,90 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/query_book"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@mipmap/ic_menu_setting"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#777777"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:text="图书查询"
+
+                />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/query_task"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@mipmap/ic_menu_setting"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#777777"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:text="我的任务"
+
+                />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 
 </LinearLayout>
