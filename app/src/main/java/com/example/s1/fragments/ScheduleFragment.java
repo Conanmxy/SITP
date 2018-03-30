@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.s1.R;
+import com.example.s1.scheduleActivity.MyTaskActivity;
+import com.example.s1.scheduleActivity.QueryBookActivity;
 import com.example.s1.scheduleActivity.QueryScoreActivity;
 import com.example.s1.scheduleActivity.ScoreActivity;
 import com.example.s1.scheduleActivity.SyllabusActivity;
@@ -66,7 +68,7 @@ public class ScheduleFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), SyllabusActivity.class);
+                Intent intent=new Intent(getActivity(), QueryBookActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +79,7 @@ public class ScheduleFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), SyllabusActivity.class);
+                Intent intent=new Intent(getActivity(), MyTaskActivity.class);
                 startActivity(intent);
             }
         });
