@@ -64,7 +64,7 @@ public class ScheduleFragment extends Fragment {
 
         //查询图书
         CardView queryBook=(CardView)getActivity().findViewById(R.id.query_book);
-        querySyllabus.setOnClickListener(new View.OnClickListener() {
+        queryBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -75,7 +75,7 @@ public class ScheduleFragment extends Fragment {
 
         //查询我的近期任务
         CardView queryTask=(CardView)getActivity().findViewById(R.id.query_task);
-        querySyllabus.setOnClickListener(new View.OnClickListener() {
+        queryTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
