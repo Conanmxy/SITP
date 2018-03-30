@@ -17,7 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.s1.DiaryActivity.WriteDiaryActivity;
-import com.example.s1.Utils.PopWindow;
+import com.example.s1.Utils.MyOkHttp;
+import com.example.s1.entity.PopWindow;
 import com.example.s1.adapter.MyPagerStateAdapter;
 import com.example.s1.fragments.ControlFragment;
 import com.example.s1.fragments.DiaryFragment;
@@ -28,7 +29,6 @@ import com.example.s1.rxjava.RxBus2;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;

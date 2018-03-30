@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.s1.entity.DiaryText;
 import com.example.s1.newsActivity.NewsFirstRunActivity;
@@ -49,6 +50,8 @@ public class NewsFragment extends Fragment {
 
     private SwipeRefreshLayout swipeRefresh;
 
+    StringBuilder Url=new StringBuilder("http://www.guancha.cn/");
+
     private List<News> NewsList=new ArrayList<>();
     @Override
     public void onViewCreated(View view,@Nullable Bundle savedInstanceState){
@@ -58,7 +61,7 @@ public class NewsFragment extends Fragment {
         boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun", true);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        register();
+       // register();
         if(isFirstRun)//第一次进入这个app
         {
             editor.putBoolean("isFirstRun",false);
@@ -74,15 +77,11 @@ public class NewsFragment extends Fragment {
             swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    Log.d("刷新：","abcdedfg");
                     refeshNews();
                 }
             });
         }
-
-
     }
-
 
     //注册RxBus
     public void register(){
@@ -96,13 +95,44 @@ public class NewsFragment extends Fragment {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String newsKind) {
-                        Log.d("refresh news:",newsKind);
                         if(newsKind.equals("政治"))
                         {
-                            refeshNews();
+                            Url.delete(0,Url.length());
+                            Url.append("http://www.guancha.cn/");
+                            sendRequestWithHttpURLConnection();
+
                         }
+                        if(newsKind.equals("军事"))
+                        {
+                            Url.delete(0,Url.length());
+                            Url.append("http://news.ifeng.com/listpage/7130/1/list.shtml");
+                            sendRequestWithHttpURLConnection();
 
-
+                        }
+                        if(newsKind.equals("财经"))
+                        {
+                            Url.delete(0,Url.length());
+                            Url.append("http://finance.ifeng.com/listpage/1/marketlist.shtml");
+                            sendRequestWithHttpURLConnection();
+                        }
+                        if(newsKind.equals("电影"))
+                        {
+                            Url.delete(0,Url.length());
+                            Url.append("http://ent.ifeng.com/listpage/6/1/list.shtml");
+                            sendRequestWithHttpURLConnection();
+                        }
+                        if(newsKind.equals("数码"))
+                        {
+                            Url.delete(0,Url.length());
+                            Url.append("http://digi.ifeng.com/listpage/817/1/list.shtml");
+                            sendRequestWithHttpURLConnection();
+                        }
+                        if(newsKind.equals("体育"))
+                        {
+                            Url.delete(0,Url.length());
+                            Url.append("http://sports.xinhuanet.com/");
+                            sendRequestWithHttpURLConnection();
+                        }
                     }
                 });
     }
@@ -140,7 +170,8 @@ public class NewsFragment extends Fragment {
                 BufferedReader reader=null;
                 try
                 {
-                    URL url=new URL("http://www.guancha.cn/");
+                    register();
+                    URL url=new URL(Url.toString());
                     connection=(HttpURLConnection)url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setConnectTimeout(8000);
@@ -148,18 +179,45 @@ public class NewsFragment extends Fragment {
                     InputStream in=connection.getInputStream();
                     //读取输入流
                     reader=new BufferedReader(new InputStreamReader(in));
-                    if(reader==null)
-                        Log.d("reader: ","null");
                     StringBuilder response=new StringBuilder();
                     String line;
                     while((line=reader.readLine())!=null) {
                         response.append(line);
                     }
-                    //showResponse(response.toString());
                     ArrayList<String> results = new ArrayList<String>();
-                    results=RegexString(response.toString(),
-                            "<h4class=\"module-title\"><ahref=\"(.*?)\"target=\"_blank\">(.*?)</a></h4>",
-                            "<divclass=\"content-headline\"><h3><ahref=\"(.*?)\"target=\"_blank\">(.*?)</a></h3>");
+                    switch (Url.toString())
+                    {
+                        case "http://www.guancha.cn/":
+                            results = RegexString(response.toString(),
+                                "<h4class=\"module-title\"><ahref=\"(.*?)\"target=\"_blank\">(.*?)</a></h4>",
+                                "<divclass=\"content-headline\"><h3><ahref=\"(.*?)\"target=\"_blank\">(.*?)</a></h3>");
+                            break;
+
+                        case "http://news.ifeng.com/listpage/7130/1/list.shtml":
+                            results=RegexString(response.toString(),
+                                "<divclass=\"comListBox\"><h2><ahref=\"(.*?)\"target=\"_blank\">(.*?)</a></h2><p>(.*?)</p></div>");
+                            break;
+
+                        case "http://finance.ifeng.com/listpage/1/marketlist.shtml":
+                            results=RegexString(response.toString(),
+				                "<divclass=\"box_list_word\"><h2><aclass=\"js_url\"href=\"(.*?)\"target=\"_blank\">(.*?)</a></h2>");
+                            break;
+
+                        case "http://ent.ifeng.com/listpage/6/1/list.shtml":
+		                    results=RegexString(response.toString(),
+                                "<h2><ahref=\"(.*?)\"target=\"_blank\"title=\"(.*?)\">(.*?)</a></h2>");
+                            break;
+
+                        case "http://digi.ifeng.com/listpage/817/1/list.shtml":
+                            results=RegexString(response.toString(),
+				                "<h2><ahref=\"(.*?)\"target=\"_blank\"title=\"(.*?)\">(.*?)</a></h2>");
+                            break;
+
+                        case "http://sports.xinhuanet.com/":
+                            results=RegexString(response.toString(),
+                                    "<divclass=\"bnntxt02\"><ahref=\"(.*?)\"target=\"_blank\">(.*?)</a></div>");
+                            break;
+                    }
                     showResponse(results);
 
                 }
@@ -194,10 +252,10 @@ public class NewsFragment extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //responseText.setText(response);
                 RecyclerView newsTitleRecyclerView=(RecyclerView)getActivity().findViewById(R.id.recycler_view_news);
                 LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
                 newsTitleRecyclerView.setLayoutManager(layoutManager);
+                NewsList.clear();
                 for(int i=0;i<results.size();i=i+2)
                 {
                     News news=new News();
@@ -206,7 +264,6 @@ public class NewsFragment extends Fragment {
                     NewsList.add(news);
                 }
                 NewsAdapter adapter=new NewsAdapter(NewsList);
-                Log.d("adapter:",NewsList.get(0).getTitle());
                 newsTitleRecyclerView.setAdapter(adapter);
             }
         });
@@ -257,6 +314,34 @@ public class NewsFragment extends Fragment {
         return results;
     }
 
+    //重载，参数个数不同
+    static ArrayList<String> RegexString(String targetStr, String patternStr)
+    {
+        ArrayList<String> results = new ArrayList<String>();
+
+        //去除html源码中所有的空格符换行符
+        Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+        Matcher m = p.matcher(targetStr);
+        targetStr = m.replaceAll("");
+
+        Pattern pattern = Pattern.compile(patternStr);
+        // 定义一个matcher用来做匹配
+        Matcher matcher = pattern.matcher(targetStr);
+        Boolean isFind = matcher.find();
+        // 如果找到了
+        while (isFind)
+        {
+            //加入列表
+            String result_link=matcher.group(1);
+            String result_title=matcher.group(2);
+            result_title+="\n";
+            results.add(result_link);
+            results.add(result_title);
+            isFind=matcher.find();
+        }
+        return results;
+    }
+
     private class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>
     {
         private List<News> mNewsList;
@@ -289,7 +374,6 @@ public class NewsFragment extends Fragment {
                 {
                     int position=holder.getAdapterPosition();
                     News news=mNewsList.get(position);
-                    //String url="http://www.guancha.cn/";
                     String url=news.getLink();
                     Intent intent=new Intent(v.getContext(),com.example.s1.newsActivity.NewsContentActivity.class);
                     intent.putExtra("url",url);
@@ -300,13 +384,15 @@ public class NewsFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(ViewHolder holder, int position)
+        {
             News news = mNewsList.get(position);
             holder.newsTitleText.setText(news.getTitle());
         }
 
         @Override
-        public int getItemCount() {
+        public int getItemCount()
+        {
             return mNewsList.size();
         }
     }

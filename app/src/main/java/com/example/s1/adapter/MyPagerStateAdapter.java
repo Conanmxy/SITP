@@ -3,13 +3,9 @@ package com.example.s1.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.s1.fragments.ControlFragment;
 import com.example.s1.fragments.DiaryFragment;
-import com.example.s1.fragments.NewsFragment;
-import com.example.s1.fragments.ScheduleFragment;
 
 import java.util.List;
 

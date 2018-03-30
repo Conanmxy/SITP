@@ -118,7 +118,7 @@
             android:layout_centerVertical="true"
             android:textSize="25dp"
             android:padding="4dp"
-            android:text="娱乐"/>
+            android:text="电影"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -140,7 +140,7 @@
             android:layout_centerVertical="true"
             android:textSize="25dp"
             android:padding="4dp"
-            android:text="科技"/>
+            android:text="数码"/>
     </RelativeLayout>
 
 

@@ -1,23 +1,18 @@
-package com.example.s1.Utils;
+package com.example.s1.entity;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.s1.R;
 import com.example.s1.rxjava.RxBus2;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -65,7 +60,7 @@ public class PopWindow extends PopupWindow {
                 //do something you need here
                // removeView();
                 RxBus2.getDefault().post("政治");
-              //  PopWindow.this.dismiss();
+                PopWindow.this.dismiss();
             }
         });
 
@@ -74,7 +69,39 @@ public class PopWindow extends PopupWindow {
             @Override
             public void onClick(View arg0) {
                 // do something before signing out
-                context.finish();
+                RxBus2.getDefault().post("军事");
+                PopWindow.this.dismiss();
+            }
+        });
+        conentView.findViewById(R.id.m_finance).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // do something you need here
+
+                RxBus2.getDefault().post("财经");
+                PopWindow.this.dismiss();
+            }
+        });
+
+
+        conentView.findViewById(R.id.m_movie).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                //do something you need here
+                // removeView();
+                RxBus2.getDefault().post("电影");
+                PopWindow.this.dismiss();
+            }
+        });
+
+        conentView.findViewById(R.id.m_tech).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // do something before signing out
+                RxBus2.getDefault().post("数码");
                 PopWindow.this.dismiss();
             }
         });
@@ -84,9 +111,12 @@ public class PopWindow extends PopupWindow {
             public void onClick(View arg0) {
                 // do something you need here
 
+                RxBus2.getDefault().post("体育");
                 PopWindow.this.dismiss();
             }
         });
+
+
 
 
         //register();

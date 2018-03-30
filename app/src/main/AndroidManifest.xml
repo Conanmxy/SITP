@@ -30,7 +30,10 @@
         <activity android:name=".newsActivity.NewsContentActivity" />
         <activity android:name=".newsActivity.NewsFirstRunActivity" />
         <activity android:name=".scheduleActivity.EditScheduleActivity" />
-        <activity android:name=".controlActivity.ControlDetailActivity"></activity>
+        <activity android:name=".controlActivity.ControlDetailActivity" />
+        <activity android:name=".scheduleActivity.ScoreActivity" />
+        <activity android:name=".scheduleActivity.QueryScoreActivity" />
+        <activity android:name=".scheduleActivity.SyllabusActivity"></activity>
     </application>
 
 </manifest>

@@ -45,6 +45,8 @@
             android:src="@drawable/calendar_month_right"
             tools:ignore="RtlHardcoded" />
 
+
+
         <com.example.s1.calendarviewdemo.CalendarView
             android:id="@+id/calendar"
             android:layout_width="fill_parent"
