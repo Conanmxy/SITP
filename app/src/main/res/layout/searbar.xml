@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/blue"
+    android:background="@color/m_light_blue"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -16,15 +15,15 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/search_et_input"
+            android:id="@+id/book_name"
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
-            android:drawableLeft="@mipmap/setting_black"
+            android:drawableLeft="@mipmap/search"
             android:drawablePadding="5dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/rounded_edittext"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:imeOptions="actionSearch"
             android:inputType="text"
 
@@ -33,16 +32,16 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/search_btn_back"
+        android:id="@+id/book_search"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
-        android:background="@color/blue"
+        android:background="@drawable/search_button"
         android:layout_height="40dp"
         android:text="搜索"
         android:textSize="20dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
 </LinearLayout>
 

@@ -21,7 +21,8 @@
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:layout_marginLeft="5dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
+        android:lineSpacingExtra="10dp"
         />
 
 </LinearLayout>

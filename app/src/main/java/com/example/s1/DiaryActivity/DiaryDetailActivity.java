@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.s1.R;
@@ -27,8 +28,8 @@ import java.util.regex.Pattern;
 public class DiaryDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    Button left;
-    Button right;
+    ImageButton left;
+    ImageButton right;
     TextView title;
     EditText diary_edit;
     String input;//要显示的字符串
@@ -44,13 +45,13 @@ public class DiaryDetailActivity extends AppCompatActivity {
     //region
     private void initialView()
     {
-        left=(Button)findViewById(R.id.title_left);
-        right=(Button)findViewById(R.id.title_right);
+        left=(ImageButton) findViewById(R.id.title_left);
+        right=(ImageButton) findViewById(R.id.title_right);
         title=(TextView)findViewById(R.id.title_text);
         diary_edit=(EditText)findViewById(R.id.diary_content);
         title.setText("日记详情");
-        left.setText("返回");
-        right.setText("编辑");
+        left.setImageResource(R.mipmap.back_white);
+        right.setImageResource(R.mipmap.edit_white);
         input=getIntent().getStringExtra("existed_text");
         id=getIntent().getIntExtra("current_id",0);
     }

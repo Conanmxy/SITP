@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
@@ -30,6 +31,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,14 +56,14 @@ public class WriteDiaryActivity extends AppCompatActivity {
 
     public static final int CHOOSE_PHOTO = 2;
     private EditText editText;
-    private Button left;
-    private Button right;
+    private ImageButton left;
+    private ImageButton right;
     private TextView titleText;
     private ImageView addPic;
     private ImageView hideSoftInput;
     private ArrayList<String> uris;
     private TextView timeText;
-
+    String title_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +75,8 @@ public class WriteDiaryActivity extends AppCompatActivity {
 
     private void initialView() {
         editText = (EditText) findViewById(R.id.diary_edit);
-        left = (Button) findViewById(R.id.title_left);
-        right = (Button) findViewById(R.id.title_right);
+        left = (ImageButton) findViewById(R.id.title_left);
+        right = (ImageButton) findViewById(R.id.title_right);
         titleText = (TextView) findViewById(R.id.title_text);
         addPic = (ImageView) findViewById(R.id.diary_edit_add_pic_ib);
         hideSoftInput=(ImageView)findViewById(R.id.diary_edit_hideSoftInput_ib);
@@ -93,12 +95,12 @@ public class WriteDiaryActivity extends AppCompatActivity {
             showExistDiary(exist_diary);
 
         editText.setSelection(editText.getText().toString().length());
-        String title_text = intent.getStringExtra("current_title");
+        title_text = intent.getStringExtra("current_title");
         titleText.setText(title_text);
         if (title_text.equals("编辑"))
-            left.setText("删除");
-        else left.setText("取消");
-        right.setText("完成");
+            left.setImageResource(R.mipmap.delete_white);
+        else left.setImageResource(R.mipmap.back_white);
+        right.setImageResource(R.mipmap.finished_white);
     }
 
     private void showExistDiary(String input)
@@ -139,7 +141,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //目前是删除的功能
-                if (left.getText().toString().equals("删除")) {
+                if (title_text.equals("编辑")) {
                     int currentId = getIntent().getIntExtra("current_id", 0);
                     DataSupport.deleteAll(DiaryText.class, "id=?", String.valueOf(currentId));
                     editText.setText("");

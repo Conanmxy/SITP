@@ -26,13 +26,6 @@ public class TestMainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_main);
 
-        View view=this.getWindow().peekDecorView();
-        if(view!=null)
-        {
-            InputMethodManager inputMethodManager=
-                    (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromInputMethod(view.getWindowToken(),0);
-        }
-        EditText editText=(EditText)findViewById(R.id.gridview);
+
     }
 }

@@ -4,16 +4,16 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:background="@color/colorPrimary">
-    <Button
+    android:background="@color/m_light_blue">
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/m_light_blue"
         android:id="@+id/title1_left"
         android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:text="删除"
-        android:textColor="@color/black"
-        android:background="@color/colorPrimary"/>
+
+        android:src="@mipmap/back_white"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -21,16 +21,17 @@
         android:layout_gravity="center"
         android:id="@+id/title1_text"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:text="新建"
+        android:textColor="@color/white"
+        android:text="写日记"
         android:textSize="24sp"/>
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title1_right"
+        android:src="@mipmap/finished_white"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:text="保存"
         android:textColor="@color/black"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/m_light_blue"/>
 </LinearLayout>

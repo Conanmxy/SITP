@@ -31,7 +31,7 @@
             android:background="@null"
             android:contentDescription="@null"
             android:padding="8dp"
-            android:src="@drawable/calendar_month_left"
+            android:src="@mipmap/date_left_black"
             tools:ignore="RtlHardcoded" />
 
         <ImageButton
@@ -42,7 +42,7 @@
             android:background="@null"
             android:contentDescription="@null"
             android:padding="8dp"
-            android:src="@drawable/calendar_month_right"
+            android:src="@mipmap/date_right_black"
             tools:ignore="RtlHardcoded" />
 
 

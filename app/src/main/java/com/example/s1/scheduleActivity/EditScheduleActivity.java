@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.s1.R;
@@ -21,8 +22,8 @@ import java.sql.Date;
 public class EditScheduleActivity extends AppCompatActivity {
 
     private EditText editText1;
-    private Button left1;
-    private Button right1;
+    private ImageButton left1;
+    private ImageButton right1;
     private TextView titleText1;
     private MyDatabaseHelper dbHelper1;
     SQLiteDatabase db_schedule1;
@@ -36,8 +37,8 @@ public class EditScheduleActivity extends AppCompatActivity {
     private void initialView1()
     {
         editText1=(EditText) findViewById(R.id.schedule_edit);
-        left1=(Button) findViewById(R.id.title1_left);
-        right1=(Button) findViewById(R.id.title1_right);
+        left1=(ImageButton) findViewById(R.id.title1_left);
+        right1=(ImageButton) findViewById(R.id.title1_right);
         titleText1=(TextView) findViewById(R.id.title1_text);
         Intent intent=getIntent();
         String exist_diary= intent.getStringExtra("existed_text");
@@ -46,9 +47,9 @@ public class EditScheduleActivity extends AppCompatActivity {
         String title_text=intent.getStringExtra("current_title");
         titleText1.setText(title_text);
         if(title_text.equals("编辑"))
-            left1.setText("删除");
-        else left1.setText("取消");
-        right1.setText("完成");
+            left1.setImageResource(R.mipmap.delete_white);
+        else left1.setImageResource(R.mipmap.back_white);
+        right1.setImageResource(R.mipmap.finished_white);
     }
     private void initialEvent1()
     {
@@ -56,7 +57,7 @@ public class EditScheduleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //目前是删除的功能
-                if(left1.getText().toString().equals("删除"))
+                if(titleText1.getText().toString().equals("编辑"))
                 {
                     dbHelper1 = new MyDatabaseHelper(getApplicationContext(),"schedule.db",null,1);
                     db_schedule1=dbHelper1.getWritableDatabase();

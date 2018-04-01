@@ -550,7 +550,7 @@ public class CalendarView extends View implements View.OnTouchListener {
         private int btnColor = Color.parseColor("#666666");
         private int borderColor = Color.parseColor("#CCCCCC");
         public int todayNumberColor = Color.RED;
-        public int weekDayColor = Color.parseColor("#f96dac");
+        public int weekDayColor = Color.parseColor("#D3D3D3");//1
         public int cellDownColor = Color.parseColor("#CCFFFF");
         public int cellSelectedColor = Color.parseColor("#99CCFF");     //按下背景色
         public Paint borderPaint;
