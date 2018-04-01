@@ -5,6 +5,7 @@ package com.example.s1.adapter;
  */
 
 import android.icu.text.LocaleDisplayNames;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +25,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
-        View scoreView;
+        CardView scoreView;
         TextView name;//课程名称
         TextView grade;//成绩
         TextView credit;//学分
@@ -32,7 +33,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
 
         public ViewHolder(View view){
             super(view);
-            scoreView=view;
+            scoreView=(CardView)view;
             name=(TextView)view.findViewById(R.id.name);
             grade=(TextView)view.findViewById(R.id.grade);
             credit=(TextView)view.findViewById(R.id.credit);

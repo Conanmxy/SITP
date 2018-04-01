@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#f5f5f5</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#fff</color>
     <color name="lightRed">#fffaaacc</color>
@@ -21,4 +21,5 @@
     <color name="yellow">#ffffff00</color>
     <color name="calendar_top_bg">#fff</color>
     <color name="b_gray">#ffccccc0</color>
+    <color name="m_light_green">#1E90FF</color>
 </resources>

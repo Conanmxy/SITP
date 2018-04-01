@@ -1,5 +1,6 @@
 package com.example.s1.scheduleActivity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,16 +25,18 @@ public class ScoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-         scoreList=new ArrayList<>();
+        scoreList=new ArrayList<>();
         recyclerView=(RecyclerView)findViewById(R.id.score_recycler);
         LinearLayoutManager layoutManager=new LinearLayoutManager(ScoreActivity.this);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         totalScore=(TextView)findViewById(R.id.total_score);
 
-        final String userName=getIntent().getStringExtra("sUserName");
-        final String password=getIntent().getStringExtra("sPassword");
-        Log.d("username",userName);
+        //获取缓存的用户信息
+        SharedPreferences userPrefer=getSharedPreferences("TJuser",MODE_PRIVATE);
+
+        final String userName=userPrefer.getString("username","");
+        final String password=userPrefer.getString("password","");
 
         new Thread(new Runnable() {
             @Override

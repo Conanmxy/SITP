@@ -13,36 +13,36 @@
         android:background="?attr/colorPrimary">
 
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt1_gird"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="第1周"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:id="@+id/txt1_gird"
-                    android:textSize="20dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="第1周"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <TextView
-                    android:layout_gravity="center_horizontal"
-                    android:id="@+id/txt2_grid"
-                    android:textSize="10dp"
-                    android:text="2017-2018学年下学期"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"  />
-            </LinearLayout>
+                />
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/txt2_grid"
+                android:textSize="10dp"
+                android:text="2017-2018学年下学期"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"  />
+        </LinearLayout>
 
-            <!--<Button-->
-                <!--android:id="@+id/bt_gird"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:textSize="18dp"-->
-                <!--android:text="列表模式"-->
-                <!--android:background="@color/colorPrimaryDark"/>-->
+        <!--<Button-->
+        <!--android:id="@+id/bt_gird"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:textSize="18dp"-->
+        <!--android:text="列表模式"-->
+        <!--android:background="@color/colorPrimaryDark"/>-->
 
     </android.support.v7.widget.Toolbar>
 
@@ -58,10 +58,10 @@
             android:singleLine="false"
             android:id="@+id/month"
             android:textSize="13dp"
-            android:layout_width="24dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="2\n月"/>
+            android:text="2月"/>
         <TextView
             android:id="@+id/Mon"
             style="@style/top"
@@ -71,15 +71,15 @@
             style="@style/top"
             android:text="周二" />
         <TextView
-            android:id="@+id/Wed"
+            android:id="@+id/tus"
             style="@style/top"
             android:text="周三" />
         <TextView
-            android:id="@+id/Thu"
+            android:id="@+id/wed"
             style="@style/top"
             android:text="周四" />
         <TextView
-            android:id="@+id/Fri"
+            android:id="@+id/thu"
             style="@style/top"
             android:text="周五" />
         <TextView
@@ -102,47 +102,23 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="28dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent">
                 <TextView
                     style="@style/first_item"
-                    android:text="1" />
+                    android:text="1-2" />
                 <TextView
                     style="@style/first_item"
-                    android:text="2" />
+                    android:text="3-4" />
                 <TextView
                     style="@style/first_item"
-                    android:text="3" />
+                    android:text="5-6" />
                 <TextView
                     style="@style/first_item"
-                    android:text="4" />
+                    android:text="7-8" />
                 <TextView
                     style="@style/first_item"
-                    android:text="5" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="6" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="7" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="8" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="9" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="10" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="11" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="12" />
-                <TextView
-                    style="@style/first_item"
-                    android:text="13" />
+                    android:text="10-11" />
             </LinearLayout>
 
             //这里开始就是7个linearlayout了，用来显示课程的
@@ -153,9 +129,25 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="机器学习@F201"/>
+                    android:id="@+id/mon_1"
+                    style="@style/first_item"
+                    android:text=""/>
+                <TextView
+                    android:id="@+id/mon_3"
+                    style="@style/first_item"
+                    android:text=""/>
+                <TextView
+                    android:id="@+id/mon_5"
+                    style="@style/first_item"
+                    android:text=""/>
+                <TextView
+                    android:id="@+id/mon_7"
+                    style="@style/first_item"
+                    android:text=""/>
+                <TextView
+                    android:id="@+id/mon_10"
+                    style="@style/first_item"
+                    android:text=""/>
             </LinearLayout>
 
             <LinearLayout
@@ -164,6 +156,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tus_1"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/tus_3"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/tus_5"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/tus_7"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/tus_10"
+                    style="@style/first_item"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -172,6 +184,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/wed_1"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/wed_3"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/wed_5"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/wed_7"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/wed_10"
+                    style="@style/first_item"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -180,6 +212,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/thu_1"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/thu_3"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/thu_5"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/thu_7"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/thu_10"
+                    style="@style/first_item"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -188,6 +240,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/fri_1"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/fri_3"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/fri_5"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/fri_7"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/fri_10"
+                    style="@style/first_item"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -196,6 +268,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/sat_1"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sat_3"
+                    style="@style/first_item" />
+
+                <TextView
+                    android:id="@+id/sat_5"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sat_7"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sat_10"
+                    style="@style/first_item"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -204,6 +296,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/sun_1"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sun_3"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sun_5"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sun_7"
+                    style="@style/first_item"
+                    />
+                <TextView
+                    android:id="@+id/sun_10"
+                    style="@style/first_item"
+                    />
             </LinearLayout>
 
         </LinearLayout>

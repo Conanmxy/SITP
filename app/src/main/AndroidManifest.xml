@@ -14,14 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:icon="@mipmap/an2"
-            android:label="生活助手">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="TJ"></activity>
         <activity
             android:name=".DiaryActivity.WriteDiaryActivity"
             android:icon="@drawable/an2" />
@@ -35,7 +28,30 @@
         <activity android:name=".scheduleActivity.QueryScoreActivity" />
         <activity android:name=".scheduleActivity.SyllabusActivity" />
         <activity android:name=".scheduleActivity.MyTaskActivity" />
-        <activity android:name=".scheduleActivity.QueryBookActivity"></activity>
+        <activity android:name=".scheduleActivity.QueryBookActivity" />
+        <activity
+            android:name=".scheduleActivity.BookDetailActivity"
+            android:theme="@style/MyActivityTheme" />
+        <activity
+            android:name=".LoginActivity"
+           >
+
+
+        </activity>
+
+        <activity android:name=".JudgeActivity"
+            android:label="同济">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+
+
+
     </application>
 
 </manifest>

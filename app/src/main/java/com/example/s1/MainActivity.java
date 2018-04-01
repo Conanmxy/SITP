@@ -1,6 +1,7 @@
 package com.example.s1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.s1.DiaryActivity.WriteDiaryActivity;
 import com.example.s1.Utils.MyOkHttp;
@@ -26,6 +29,8 @@ import com.example.s1.fragments.NewsFragment;
 import com.example.s1.fragments.ScheduleFragment;
 import com.example.s1.newsActivity.NewsFirstRunActivity;
 import com.example.s1.rxjava.RxBus2;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     private PopWindow popWindow;
     ArrayList<Integer>delMenu;
+    TextView studentNo;
 
 
     @Override
@@ -76,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab==mTablayout.getTabAt(0)){
-                    schedule.setIcon(R.mipmap.ic_menu_anniversary);
+                    schedule.setIcon(R.mipmap.campus_black);
                 }else if(tab==mTablayout.getTabAt(1)){
-                    news.setIcon(R.mipmap.ic_menu_news_48);
+                    news.setIcon(R.mipmap.news_black);
                 }else if(tab==mTablayout.getTabAt(2)){
-                    diary.setIcon(R.mipmap.ic_menu_diary);
+                    diary.setIcon(R.mipmap.diary_black);
                 }else if(tab==mTablayout.getTabAt(3)){
-                    control.setIcon(R.mipmap.ic_menu_welfare_black);
+                    control.setIcon(R.mipmap.releax_black);
                 }
             }
 
@@ -90,16 +96,16 @@ public class MainActivity extends AppCompatActivity {
             public void onTabUnselected(TabLayout.Tab tab) {
 
                 if(tab==mTablayout.getTabAt(0)){
-                    schedule.setIcon(R.mipmap.ic_menu_anniversary_dark);
+                    schedule.setIcon(R.mipmap.campus_blue);
                     mViewPager.setCurrentItem(0);
                 }else if(tab==mTablayout.getTabAt(1)){
-                    news.setIcon(R.mipmap.news_48_light_green);
+                    news.setIcon(R.mipmap.news_blue);
                     mViewPager.setCurrentItem(1);
                 }else if(tab==mTablayout.getTabAt(2)){
-                    diary.setIcon(R.mipmap.ic_menu_diary_dark);
+                    diary.setIcon(R.mipmap.diary_blue);
                     mViewPager.setCurrentItem(2);
                 }else if(tab==mTablayout.getTabAt(3)){
-                    control.setIcon(R.mipmap.ic_menu_welfare_dark);
+                    control.setIcon(R.mipmap.releax_blue);
                     mViewPager.setCurrentItem(3);
                 }
             }
@@ -110,10 +116,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //左则滑动菜单点击事件
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId()==R.id.setting)
+                if(item.getItemId()==R.id.menu_setting)
                 {
                     Intent intent=new Intent(MainActivity.this, NewsFirstRunActivity.class);
                     startActivity(intent);
@@ -121,6 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //显示学号
+        SharedPreferences pref=getSharedPreferences("TJuser",MODE_PRIVATE);
+        String studentNoStr=pref.getString("username","");
+        if(!studentNoStr.equals(""))
+        {
+            studentNo.setText(studentNoStr);
+        }
 
 
     }
@@ -131,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         myPagerStateAdapter=new MyPagerStateAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(myPagerStateAdapter);
         navView=(NavigationView)findViewById(R.id.nav_view);
-        delMenu=new ArrayList<Integer>();
+        delMenu=new ArrayList<>();
 
         //处理toolbar
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -142,19 +157,22 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.mipmap.menu_64px);
         }
-        navView.setCheckedItem(R.id.nav_call);
+        navView.setCheckedItem(R.id.menu_login);
 
         mTablayout.setupWithViewPager(mViewPager);
+        View headerView = navView.getHeaderView(0);
+        studentNo=(TextView)headerView.findViewById(R.id.menu_student_no);
+
 
         schedule=mTablayout.getTabAt(0);
         news=mTablayout.getTabAt(1);
         diary=mTablayout.getTabAt(2);
         control=mTablayout.getTabAt(3);
 
-        schedule.setIcon(R.mipmap.ic_menu_anniversary_dark);
-        news.setIcon(R.mipmap.ic_menu_welfare_dark);
-        diary.setIcon(R.mipmap.ic_menu_diary_dark);
-        control.setIcon(R.mipmap.ic_menu_welfare_dark);
+        schedule.setIcon(R.mipmap.campus_blue);
+        news.setIcon(R.mipmap.news_blue);
+        diary.setIcon(R.mipmap.diary_blue);
+        control.setIcon(R.mipmap.releax_blue);
 
     }
 

@@ -1,7 +1,9 @@
 package com.example.s1.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.s1.LoginActivity;
 import com.example.s1.R;
 import com.example.s1.scheduleActivity.MyTaskActivity;
 import com.example.s1.scheduleActivity.QueryBookActivity;
@@ -40,14 +43,26 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        SharedPreferences pref=getActivity().getSharedPreferences("TJuser", Context.MODE_PRIVATE);
+        final boolean isIn=pref.getBoolean("isIn",false);
         //查询绩点
         CardView queryScore=(CardView)getActivity().findViewById(R.id.query_score);
         queryScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), QueryScoreActivity.class);
-                startActivity(intent);
+                if(isIn)
+                {
+                    Intent intent=new Intent(getActivity(), ScoreActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -56,9 +71,16 @@ public class ScheduleFragment extends Fragment {
         querySyllabus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent=new Intent(getActivity(), SyllabusActivity.class);
-                startActivity(intent);
+                if(isIn)
+                {
+                    Intent intent=new Intent(getActivity(), SyllabusActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

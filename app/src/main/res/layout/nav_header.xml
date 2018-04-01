@@ -3,28 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:padding="10dp"
-    android:background="?attr/colorPrimary">
+    android:background="#1E90FF">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/icon_image"
-        android:src="@drawable/snow"
+        android:src="@drawable/tongji"
         android:layout_centerInParent="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mial"
+        android:id="@+id/menu_student_no"
         android:layout_alignParentBottom="true"
-        android:text="mxy@gmail.com"
+        android:text="1552237"
         android:textColor="#FFF"
-        android:textSize="14sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:layout_above="@id/mial"
-        android:text="mxy"
-        android:textColor="#FFF"
-        android:textSize="14sp"/>
+        android:textSize="25sp"/>
 
 </RelativeLayout>

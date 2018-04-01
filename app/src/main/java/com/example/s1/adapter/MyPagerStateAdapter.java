@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/4.
  */
 public class MyPagerStateAdapter extends FragmentStatePagerAdapter {
-    private String[]mTitles=new String[]{"任务","新闻","日记","休息"};
+    private String[]mTitles=new String[]{"校园","新闻","日记","休息"};
     private List<Fragment>fragmentList;
     private Fragment mCurrentFragment;
     private DiaryFragment diaryFragment;
