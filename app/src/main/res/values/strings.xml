@@ -1,6 +1,21 @@
 <resources>
-    <string name="app_name">s1</string>
+    <string name="app_name">济事</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="use_help1">
+        1.同济大学图书馆书目检索需使用tongji.portal(即同济内网)登录方使用，这是由于图书馆网站的性质决定的，敬请谅解。
+    </string>
+    <string name="use_help2">
+        2.查询绩点，课程表需要同济大学统一认证登录。
+    </string>
+
+    <string name="about_us">
+        这是一个同济大学SITP项目，目前正在试运营中，由于我们开发团队才疏学浅，可能存在一些bug,还望多加担待。
+        如果您足够热心，希望能把bug反馈给我们，便于我们改善，来信请发：
+        516048741@qq.com
+        如果您是变成爱好这，项目GitHub地址如下：
+        https://github.com/Conanmxy/SITP.git
+        开源改变世界，期待您的参与
+    </string>
 </resources>

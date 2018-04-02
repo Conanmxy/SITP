@@ -20,6 +20,50 @@ import java.util.regex.Pattern;
  */
 public class MyOkHttp {
 
+
+    //判断登录是否成功
+    public static boolean judgeLogin(String userName,String password) {
+        try {
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.cookieJar(new CookieJar() {
+                private final HashMap<String, List<Cookie>> cookieStore = new HashMap<String, List<Cookie>>();
+
+                @Override
+                public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+                    cookieStore.put(url.host(), cookies);
+                }
+
+                @Override
+                public List<Cookie> loadForRequest(HttpUrl url) {
+                    List<Cookie> cookies = cookieStore.get(url.host());
+                    return cookies != null ? cookies : new ArrayList<Cookie>();
+                }
+            });
+            OkHttpClient client = builder.build();
+
+            String url4 = "https://ids.tongji.edu.cn:8443/nidp/saml2/sso?sid=0&sid=0";
+            RequestBody requestBody4 = new FormBody.Builder()
+                    .add("Ecom_User_ID", userName)
+                    .add("Ecom_Password", password)
+                    .add("option", "credential")
+                    .add("submit", "登录")
+                    .build();
+            Request request4 = new Request.Builder()
+                    .url(url4)
+                    .post(requestBody4)
+                    .build();
+            Response response4 = client.newCall(request4).execute();
+            String ht4 = response4.body().string();
+            if (ht4.contains("如有问题请拨打电话")) {
+                return false;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public static ArrayList<ArrayList<String> >  login4m3(String userName,String passsword)
     {
         ArrayList<ArrayList<String> >table=new ArrayList<>();
@@ -40,9 +84,7 @@ public class MyOkHttp {
                     return cookies != null ? cookies : new ArrayList<Cookie>();
                 }
             });
-
             OkHttpClient client=builder.build();
-
 
             String url1="http://4m3.tongji.edu.cn/eams/samlCheck";
             Request request1=new Request.Builder()
@@ -277,21 +319,9 @@ public class MyOkHttp {
                     .url(url2)
                     .build();
             Response response2=client.newCall(request2).execute();
-            String ht2=response2.body().string();
+           // String ht2=response2.body().string();
             //System.out.println(ht2);
 
-
-            String url3="https://ids.tongji.edu.cn:8443/nidp/saml2/sso?id=4996&sid=0&option=credential&sid=0";
-            RequestBody requestBody3=new FormBody.Builder()
-                    .add("?","")
-                    .build();
-            Request request3=new Request.Builder()
-                    .url(url3)
-                    .post(requestBody3)
-                    .build();
-            Response response3=client.newCall(request3).execute();
-            String ht3=response3.body().string();
-            //System.out.println(ht3);
 
             String url4="https://ids.tongji.edu.cn:8443/nidp/saml2/sso?sid=0&sid=0";
             RequestBody requestBody4=new FormBody.Builder()
@@ -319,14 +349,14 @@ public class MyOkHttp {
                     .build();
             Response response5=client.newCall(request5).execute();
             String ht5=response5.body().string();
-            System.out.println(ht5);
+            //System.out.println(ht5);
 
             String dest = "";
-            if (ht5!=null) {
-                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
-                Matcher m = p.matcher(ht5);
-                dest = m.replaceAll("");
-            }
+
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(ht5);
+            dest = m.replaceAll("");
+
             //System.out.println(dest);
             String SAMLResponse=dest.substring(dest.indexOf("value")+7,dest.lastIndexOf("\"/></form"));
 
@@ -341,7 +371,7 @@ public class MyOkHttp {
                     .post(requestBody6)
                     .build();
             Response response6=client.newCall(request6).execute();
-            String ht6=response6.body().string();
+            //String ht6=response6.body().string();
             //System.out.println("ht6"+ht6);
 
 
@@ -453,9 +483,9 @@ public class MyOkHttp {
                 }
             });
             OkHttpClient client=builder
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10,TimeUnit.SECONDS)
-                    .writeTimeout(10,TimeUnit.SECONDS)
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5,TimeUnit.SECONDS)
+                    .writeTimeout(5,TimeUnit.SECONDS)
                     .build();
 //密码登录教务处
 //
@@ -643,9 +673,9 @@ public class MyOkHttp {
                 }
             });
             OkHttpClient client = builder
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(10, TimeUnit.SECONDS)
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5, TimeUnit.SECONDS)
+                    .writeTimeout(5, TimeUnit.SECONDS)
                     .build();
 
             String aBookUrl = "http://webpac.lib.tongji.edu.cn/opac/item.php?marc_no="

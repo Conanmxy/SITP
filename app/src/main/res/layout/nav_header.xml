@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/menu_student_no"
         android:layout_alignParentBottom="true"
-        android:text="1552237"
+        android:text="同济用户"
         android:textColor="#FFF"
         android:textSize="25sp"/>
 

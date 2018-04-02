@@ -20,9 +20,9 @@
             android:orientation="horizontal" >
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/login_name" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/user_name_black" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -52,9 +52,9 @@
             android:orientation="horizontal" >
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/login_password" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/password" />
 
             <EditText
                 android:layout_width="match_parent"

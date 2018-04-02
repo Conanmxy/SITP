@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.s1.DiaryActivity.WriteDiaryActivity;
 import com.example.s1.Utils.MyOkHttp;
@@ -124,6 +125,50 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Intent intent=new Intent(MainActivity.this, NewsFirstRunActivity.class);
                     startActivity(intent);
+                }
+                if(item.getItemId()==R.id.menu_login)
+                {
+                    SharedPreferences pre=getSharedPreferences("TJuser",MODE_PRIVATE);
+                    boolean isIn=pre.getBoolean("isIn",false);
+                    if(isIn)
+                    {
+                        Toast.makeText(MainActivity.this,"您已登录！",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+
+                }
+                if(item.getItemId()==R.id.menu_useInfo)
+                {
+                    Intent intent=new Intent(MainActivity.this, MenuActivity.class);
+                    intent.putExtra("menu_info","use_help");
+                    startActivity(intent);
+                }
+                if(item.getItemId()==R.id.menu_about_us)
+                {
+                    Intent intent=new Intent(MainActivity.this, MenuActivity.class);
+                    intent.putExtra("menu_info","about_us");
+                    startActivity(intent);
+                }
+                if(item.getItemId()==R.id.menu_clear)
+                {
+                    Toast.makeText(MainActivity.this,"清除缓存成功！",Toast.LENGTH_SHORT).show();
+                }
+                if(item.getItemId()==R.id.menu_logout)
+                {
+                    SharedPreferences.Editor editor;
+                    SharedPreferences pre=getSharedPreferences("TJuser",MODE_PRIVATE);
+                    editor=pre.edit();
+                    editor.putBoolean("isIn",false);
+                    editor.putString("username",null);
+                    editor.putString("password",null);
+                    String u1=pre.getString("username","u1");
+                    //Toast.makeText(MainActivity.this,u1,Toast.LENGTH_SHORT).show();
+                    editor.apply();
+                    finish();
                 }
                 return true;
             }

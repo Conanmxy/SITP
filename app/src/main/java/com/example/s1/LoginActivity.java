@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -42,7 +43,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+        Window window = getWindow();
+//设置透明状态栏,这样才能让 ContentView 向上
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
+//需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//设置状态栏颜色
+        window.setStatusBarColor(getResources().getColor(R.color.transparent));
 
         initView();
 
@@ -81,12 +89,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String password=passwordE.getText().toString();
 
 
+        Toast.makeText(LoginActivity.this,"请稍等", Toast.LENGTH_SHORT).show();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Object object=null;
-                object=MyOkHttp.loginXuanke(userName,password);
-                if(object!=null)//成功登陆
+                boolean flag=false;
+                flag=MyOkHttp.judgeLogin(userName,password);
+                if(flag)//成功登陆
                 {
                     editor=getSharedPreferences("TJuser",MODE_PRIVATE).edit();
                     editor.putString("username",userName);
