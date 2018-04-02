@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.s1.R;
+
 /**
  * 日历控件 功能：获得点选的日期区间
  */
@@ -268,7 +270,7 @@ public class CalendarView extends View implements View.OnTouchListener {
         float cellX = (surface.cellWidth * (x - 1))
                 + (surface.cellWidth)
                 / 2f;
-        canvas.drawPoint(cellX, cellY, paint);
+        canvas.drawCircle(cellX, cellY,5, paint);
     }
 
     /**
@@ -290,7 +292,7 @@ public class CalendarView extends View implements View.OnTouchListener {
     private void drawCellBg(Canvas canvas, int index, int color) {
         int x = getXByIndex(index);
         int y = getYByIndex(index);
-        surface.cellBgPaint.setColor(color);
+        surface.cellBgPaint.setColor(color);//5
         float left = surface.cellWidth * (x - 1) + surface.borderWidth;
         float top = surface.monthHeight + surface.weekHeight + (y - 1)
                 * surface.cellHeight + surface.borderWidth;
@@ -547,7 +549,7 @@ public class CalendarView extends View implements View.OnTouchListener {
         public float borderWidth;
         public int bgColor = Color.parseColor("#FFFFFF");
         private int textColor = Color.BLACK;
-        private int btnColor = Color.parseColor("#666666");
+        private int btnColor = Color.parseColor("#666666");//4
         private int borderColor = Color.parseColor("#CCCCCC");
         public int todayNumberColor = Color.RED;
         public int weekDayColor = Color.parseColor("#D3D3D3");//1
@@ -586,7 +588,7 @@ public class CalendarView extends View implements View.OnTouchListener {
             weekPaint = new Paint();
             weekPaint.setColor(textColor);
             weekPaint.setAntiAlias(true);
-            float weekTextSize = weekHeight * 0.6f;
+            float weekTextSize = weekHeight * 0.4f;//3
             weekPaint.setTextSize(weekTextSize);
             weekPaint.setTypeface(Typeface.DEFAULT_BOLD);
             datePaint = new Paint();
@@ -594,7 +596,7 @@ public class CalendarView extends View implements View.OnTouchListener {
             datePaint.setAntiAlias(true);
             float cellTextSize = cellHeight * 0.5f;
             datePaint.setTextSize(cellTextSize);
-            datePaint.setTypeface(Typeface.DEFAULT_BOLD);
+            datePaint.setTypeface(Typeface.DEFAULT);//2
             boxPath = new Path();
             //boxPath.addRect(0, 0, width, height, Direction.CW);
             //boxPath.moveTo(0, monthHeight);

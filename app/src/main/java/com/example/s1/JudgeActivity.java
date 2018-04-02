@@ -27,6 +27,7 @@ public class JudgeActivity extends AppCompatActivity {
         else {
             startActivity(main1);
         }
+        finish();
     }
 
 }

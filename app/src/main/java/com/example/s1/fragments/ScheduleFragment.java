@@ -19,6 +19,7 @@ import com.example.s1.scheduleActivity.QueryBookActivity;
 import com.example.s1.scheduleActivity.QueryScoreActivity;
 import com.example.s1.scheduleActivity.ScoreActivity;
 import com.example.s1.scheduleActivity.SyllabusActivity;
+import com.example.s1.test.TestMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,6 +92,7 @@ public class ScheduleFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent intent=new Intent(getActivity(), QueryBookActivity.class);
+                //Intent intent=new Intent(getActivity(), TestMainActivity.class);
                 startActivity(intent);
             }
         });
