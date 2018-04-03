@@ -63,18 +63,7 @@ implements CompoundButton.OnCheckedChangeListener{
             @Override
             public void onClick(View v) {
                 non_interests=new ArrayList<Integer>();
-//                if(cbPolitics.isChecked())
-//                    interests.add("政治");
-//                if(cbWar.isChecked())
-//                    interests.add("军事");
-//                if(cbFinance.isChecked())
-//                 interests.add("财经");
-//                if(cbFun.isChecked())
-//                    interests.add("娱乐");
-//                if(cbTechnology.isChecked())
-//                    interests.add("科技");
-//                if(cbSport.isChecked())
-//                    interests.add("运动");
+
 
                 if(!cbPolitics.isChecked())
                     non_interests.add(0);
@@ -90,7 +79,7 @@ implements CompoundButton.OnCheckedChangeListener{
                     non_interests.add(5);
 
                 RxBus2.getDefault().post(non_interests);
-                Toast.makeText(NewsFirstRunActivity.this,"eee",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(NewsFirstRunActivity.this,"eee",Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

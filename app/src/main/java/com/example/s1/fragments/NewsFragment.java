@@ -62,14 +62,15 @@ public class NewsFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
        // register();
-        if(isFirstRun)//第一次进入这个app
-        {
-            editor.putBoolean("isFirstRun",false);
-            editor.apply();
-            Intent intent=new Intent(view.getContext(), NewsFirstRunActivity.class);
-            startActivity(intent);
-        }
-        else {//不是第一次进入这个app
+//        if(isFirstRun)//第一次进入这个app
+//        {
+//            editor.putBoolean("isFirstRun",false);
+//            editor.apply();
+//            Intent intent=new Intent(view.getContext(), NewsFirstRunActivity.class);
+//            startActivity(intent);
+//        }
+//        else
+        {//不是第一次进入这个app
             sendRequestWithHttpURLConnection();
 
             swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);

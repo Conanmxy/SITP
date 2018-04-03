@@ -44,7 +44,7 @@ public class QueryBookActivity extends AppCompatActivity {
         recyclerView=(RecyclerView)findViewById(R.id.books_recycler_view);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        final String bookName=bookNameE.getText().toString();
+
 
         bookNameE.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -54,6 +54,7 @@ public class QueryBookActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            final String bookName=bookNameE.getText().toString();
                             booksList= MyOkHttp.loginLib(userName,password,bookName);
 
                             runOnUiThread(new Runnable() {
@@ -84,6 +85,9 @@ public class QueryBookActivity extends AppCompatActivity {
         searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final String bookName=bookNameE.getText().toString();
+                System.out.print("bookname1.."+bookName);
 
                 new Thread(new Runnable() {
                     @Override

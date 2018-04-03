@@ -50,11 +50,11 @@
             android:background="@drawable/text_bg"
             android:gravity="center"
             android:paddingBottom="10dip"
-            android:paddingLeft="45dip"
-            android:paddingRight="45dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
             android:paddingTop="10dip"
             android:text="Login"
-            android:textColor="@color/black"
+            android:textColor="@color/blue"
             android:textSize="20dp" />
     </RelativeLayout>
 

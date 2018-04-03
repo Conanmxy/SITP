@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,11 +58,15 @@ public class MyOkHttp {
             if (ht4.contains("如有问题请拨打电话")) {
                 return false;
             }
+            else
+            {
+                return true;
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public static ArrayList<ArrayList<String> >  login4m3(String userName,String passsword)
@@ -483,9 +488,9 @@ public class MyOkHttp {
                 }
             });
             OkHttpClient client=builder
-                    .connectTimeout(5, TimeUnit.SECONDS)
-                    .readTimeout(5,TimeUnit.SECONDS)
-                    .writeTimeout(5,TimeUnit.SECONDS)
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .readTimeout(10,TimeUnit.SECONDS)
+                    .writeTimeout(10,TimeUnit.SECONDS)
                     .build();
 //密码登录教务处
 //
@@ -615,13 +620,13 @@ public class MyOkHttp {
 
 
             //查询图书
-            String queryBookName=bookName;
+            System.out.println("bookurl.."+bookName);
             String urlBooks="http://webpac.lib.tongji.edu.cn/opac/openlink.php?" +
                     "strSearchType=title" +
                     "&match_flag=forward" +
                     "&historyCount=1" +
                     "&strText=" +
-                    URLEncoder.encode(queryBookName) +
+                    URLEncoder.encode(bookName)+
                     "&doctype=ALL" +
                     "&with_ebook=on" +
                     "&displaypg=20" +
@@ -629,12 +634,13 @@ public class MyOkHttp {
                     "&sort=CATA_DATE" +
                     "&orderby=desc" +
                     "&location=ALL";
+            System.out.println("bookurl"+urlBooks);
             Request requestBooks=new Request.Builder()
                     .url(urlBooks)
                     .build();
             Response responseBooks=client.newCall(requestBooks).execute();
             String htBooks=responseBooks.body().string();
-            // System.out.println("htBooks"+htBooks);
+             //System.out.println("htBooks"+htBooks);
 
 
             //获得书本信息

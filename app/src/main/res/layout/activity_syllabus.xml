@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
 
     //这里是toolbar
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/Toolbar_grid"
         android:layout_width="match_parent"
@@ -16,23 +18,24 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/txt1_gird"
-                android:textSize="20dp"
-                android:layout_gravity="center_horizontal"
-                android:text="第1周"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-            <TextView
                 android:layout_gravity="center_horizontal"
+                android:text="第1周"
+                android:textSize="20dp" />
+
+            <TextView
                 android:id="@+id/txt2_grid"
-                android:textSize="10dp"
-                android:text="2017-2018学年下学期"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"  />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="2017-2018学年下学期"
+                android:textSize="10dp" />
         </LinearLayout>
 
         <!--<Button-->
@@ -61,11 +64,11 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="2月"/>
+            />
         <TextView
             android:id="@+id/Mon"
             style="@style/top"
-            android:text="周一\n27号" />
+            android:text="周一" />
         <TextView
             android:id="@+id/Tus"
             style="@style/top"
@@ -106,217 +109,97 @@
                 android:layout_height="match_parent">
                 <TextView
                     style="@style/first_item"
-                    android:text="1-2" />
+                    android:text="1" />
                 <TextView
                     style="@style/first_item"
-                    android:text="3-4" />
+                    android:text="2" />
                 <TextView
                     style="@style/first_item"
-                    android:text="5-6" />
+                    android:text="3" />
                 <TextView
                     style="@style/first_item"
-                    android:text="7-8" />
+                    android:text="4" />
                 <TextView
                     style="@style/first_item"
-                    android:text="10-11" />
+                    android:text="5" />
+                <TextView
+                    style="@style/first_item"
+                    android:text="6" />
+                <TextView
+                    style="@style/first_item"
+                    android:text="7" />
+                <TextView
+                    style="@style/first_item"
+                    android:text="8" />
+                <TextView
+                    style="@style/first_item"
+                    android:text="9" />
+                <TextView
+                    style="@style/first_item"
+                    android:text="10" />
+                <TextView
+                    style="@style/first_item"
+                    android:text="11" />
             </LinearLayout>
 
             //这里开始就是7个linearlayout了，用来显示课程的
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/column_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/mon_1"
-                    style="@style/first_item"
-                    android:text=""/>
-                <TextView
-                    android:id="@+id/mon_3"
-                    style="@style/first_item"
-                    android:text=""/>
-                <TextView
-                    android:id="@+id/mon_5"
-                    style="@style/first_item"
-                    android:text=""/>
-                <TextView
-                    android:id="@+id/mon_7"
-                    style="@style/first_item"
-                    android:text=""/>
-                <TextView
-                    android:id="@+id/mon_10"
-                    style="@style/first_item"
-                    android:text=""/>
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/column_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tus_1"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/tus_3"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/tus_5"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/tus_7"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/tus_10"
-                    style="@style/first_item"
-                    />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/column_3"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/wed_1"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/wed_3"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/wed_5"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/wed_7"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/wed_10"
-                    style="@style/first_item"
-                    />
-            </LinearLayout>
 
-            <LinearLayout
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/column_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/thu_1"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/thu_3"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/thu_5"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/thu_7"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/thu_10"
-                    style="@style/first_item"
-                    />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/column_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/fri_1"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/fri_3"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/fri_5"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/fri_7"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/fri_10"
-                    style="@style/first_item"
-                    />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/column_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/sat_1"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sat_3"
-                    style="@style/first_item" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/sat_5"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sat_7"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sat_10"
-                    style="@style/first_item"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/column_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/sun_1"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sun_3"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sun_5"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sun_7"
-                    style="@style/first_item"
-                    />
-                <TextView
-                    android:id="@+id/sun_10"
-                    style="@style/first_item"
-                    />
-            </LinearLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

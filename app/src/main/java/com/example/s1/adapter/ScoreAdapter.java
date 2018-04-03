@@ -38,7 +38,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
             grade=(TextView)view.findViewById(R.id.grade);
             credit=(TextView)view.findViewById(R.id.credit);
             gradePoint=(TextView)view.findViewById(R.id.gradePoint);
-            Log.d("scoreAdapter","msg2");
+           // Log.d("scoreAdapter","msg2");
 
         }
 
@@ -46,14 +46,14 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
 
     public ScoreAdapter(List<ArrayList<String>>scoreList){
         this.scoreList=scoreList;
-        Log.d("scoreAdapter","msg");
+        //Log.d("scoreAdapter","msg");
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
         View view= LayoutInflater
                 .from(parent.getContext()).inflate(R.layout.score_item,parent,false);
-        Log.d("scoreAdapter","msg1");
+        //Log.d("scoreAdapter","msg1");
 
         final ViewHolder holder=new ViewHolder(view);
         return holder;

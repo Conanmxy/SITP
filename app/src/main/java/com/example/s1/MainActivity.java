@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     else
                     {
                         Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+                        System.out.println("itentlogin");
                         startActivity(intent);
                     }
 
@@ -159,12 +160,18 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(item.getItemId()==R.id.menu_logout)
                 {
+                    SharedPreferences.Editor editor1;
+                    SharedPreferences pre1=getSharedPreferences("shared",MODE_PRIVATE);
+                    editor1=pre1.edit();
+                    editor1.putBoolean("FirstRun",true);
+                    editor1.apply();
+
                     SharedPreferences.Editor editor;
                     SharedPreferences pre=getSharedPreferences("TJuser",MODE_PRIVATE);
                     editor=pre.edit();
                     editor.putBoolean("isIn",false);
-                    editor.putString("username",null);
-                    editor.putString("password",null);
+//                    editor.putString("username",null);
+//                    editor.putString("password",null);
                     String u1=pre.getString("username","u1");
                     //Toast.makeText(MainActivity.this,u1,Toast.LENGTH_SHORT).show();
                     editor.apply();
@@ -176,8 +183,9 @@ public class MainActivity extends AppCompatActivity {
 
         //显示学号
         SharedPreferences pref=getSharedPreferences("TJuser",MODE_PRIVATE);
+        boolean isIn=pref.getBoolean("isIn",false);
         String studentNoStr=pref.getString("username","");
-        if(!studentNoStr.equals(""))
+        if(isIn && !studentNoStr.equals(""))
         {
             studentNo.setText(studentNoStr);
         }

@@ -8,6 +8,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.s1.R;
 import com.example.s1.Utils.MyOkHttp;
@@ -37,31 +38,40 @@ public class ScoreActivity extends AppCompatActivity {
 
         final String userName=userPrefer.getString("username","");
         final String password=userPrefer.getString("password","");
+        Toast.makeText(ScoreActivity.this,"稍等片刻...",Toast.LENGTH_SHORT).show();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("scoreActi","msg2");
+                //Log.d("scoreActi","msg2");
 
                 scoreList=MyOkHttp.loginXuanke(userName,password);
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String temp=scoreList.get(1).get(0);
-                        String[]strs=temp.split("实修");
-                        totalScore.setText(strs[0]+'\n'+strs[1]);
-                        scoreList.remove(0);
-                        scoreList.remove(0);
-                        adapter=new ScoreAdapter(scoreList);
-                        recyclerView.setAdapter(adapter);
-                        Log.d("scoreActi","msg4");
+                        if(scoreList==null)
+                        {
+                            Toast.makeText(ScoreActivity.this, "网络开小差了..", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            String temp=scoreList.get(1).get(0);
+                            String[]strs=temp.split("实修");
+                            totalScore.setText(strs[0]+'\n'+strs[1]);
+                            scoreList.remove(0);
+                            scoreList.remove(0);
+                            adapter=new ScoreAdapter(scoreList);
+                            recyclerView.setAdapter(adapter);
+                            // Log.d("scoreActi","msg4");
+                        }
+
                     }
                 });
 
             }
 
         }).start();
-        Log.d("scoreActi","msg1");
+        //Log.d("scoreActi","msg1");
     }
 }

@@ -5,8 +5,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -54,9 +57,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         initView();
 
+
     }
 
-
+//判断网络状态
+    public boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
     private void initView() {
         mBtnLogin = (TextView) findViewById(R.id.main_btn_login);
         progress = findViewById(R.id.layout_progress);
@@ -88,39 +103,54 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String userName=userNameE.getText().toString();
         final String password=passwordE.getText().toString();
 
-
-        Toast.makeText(LoginActivity.this,"请稍等", Toast.LENGTH_SHORT).show();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                boolean flag=false;
-                flag=MyOkHttp.judgeLogin(userName,password);
-                if(flag)//成功登陆
-                {
-                    editor=getSharedPreferences("TJuser",MODE_PRIVATE).edit();
-                    editor.putString("username",userName);
-                    editor.putString("password",password);
-                    editor.putBoolean("isIn",true);
-                    editor.apply();
-                    Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }
-                else
-                {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(LoginActivity.this,"信息错误！",Toast.LENGTH_SHORT).show();
+        String toastInfo="";
+        if(isNetworkConnected(LoginActivity.this))
+        {
+            toastInfo="请稍等...";
+            Toast.makeText(LoginActivity.this,toastInfo, Toast.LENGTH_SHORT).show();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    boolean flag=false;
+                    flag=MyOkHttp.judgeLogin(userName,password);
+                    if(flag)//成功登陆
+                    {
+                        editor=getSharedPreferences("TJuser",MODE_PRIVATE).edit();
+                        editor.putString("username",userName);
+                        editor.putString("password",password);
+                        editor.putBoolean("isIn",true);
+                        editor.apply();
+                        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoginActivity.this,"信息错误！",Toast.LENGTH_SHORT).show();
 //                            Intent intent = getIntent();
 //                            finish();
 //                            startActivity(intent);
 
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
-            }
-        }).start();
+            }).start();
+        }
+        else
+        {
+            toastInfo="网络未连接！";
+            Toast.makeText(LoginActivity.this,toastInfo, Toast.LENGTH_SHORT).show();
+
+        }
+
+
+
+
 
 
 
