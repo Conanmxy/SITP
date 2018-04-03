@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,9 +36,10 @@ public class SyllabusActivity extends AppCompatActivity {
     public int k;
     String userName;
     String password;
-    String []Course_backgroundcolor=new String[]{"#FFBF87","#2FE1D6","#38C6BD","#44D9E6","#1c92d2"
+    SharedPreferences.Editor editor;
+    String []Course_backgroundcolor=new String[]{"#4EF037","#2FE1D6","#ED5485","#44D9E6","#1c92d2"
             ,"#F677F7","#ED93CB"};
-    TextView Course;
+    //TextView Course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +54,20 @@ public class SyllabusActivity extends AppCompatActivity {
         //获取缓存的用户信息
         SharedPreferences userPrefer=getSharedPreferences("TJuser",MODE_PRIVATE);
 
-        boolean isIn=userPrefer.getBoolean("isIn",false);
-        System.out.println("isIn:"+isIn);
-        userName=userPrefer.getString("username","");
-        password=userPrefer.getString("password","");
+        // boolean isIn=userPrefer.getBoolean("isIn",false);
+        // System.out.println("isIn:"+isIn);
 
-//        userName="1552237";
+
+
+//        userName="1552237";/
 //        password="113803";
 
         if(isFirstRun)
         {
             editor2.putBoolean("FirstRun",false);
             editor2.apply();
+            userName=userPrefer.getString("username","");
+            password=userPrefer.getString("password","");
             showCourses_online(userName,password);
         }
         else showCourses_local();
@@ -103,12 +108,13 @@ public class SyllabusActivity extends AppCompatActivity {
                 CourseList = MyOkHttp.login4m3(userName,password);
 
                 k=0;
-                final SharedPreferences.Editor editor=getSharedPreferences("course",MODE_PRIVATE).edit();//将课程信息缓存到本地
+                editor=getSharedPreferences("course",MODE_PRIVATE).edit();//将课程信息缓存到本地
                 editor.putInt("size",CourseList.size());
                 editor.apply();
 
                 runOnUiThread(new Runnable()
                 {
+
                     @Override
                     public void run()
                     {
@@ -148,15 +154,24 @@ public class SyllabusActivity extends AppCompatActivity {
                                 int id = getResources().getIdentifier(week_idtemp, "id", getBaseContext().getPackageName());
 
                                 RelativeLayout relativeLayout=(RelativeLayout) findViewById(id);
-                                Course = new TextView(getBaseContext());
+                                TextView Course = new TextView(getBaseContext());
                                 Course.setLayoutParams(new RelativeLayout.LayoutParams(
                                         getPixelsFromDp(60),getPixelsFromDp((courseorder_end-courseorder_begin+1)*59)
                                 ));
                                 Course.setText(content);
                                 Course.setAlpha(0.9f);
                                 Course.setTextColor(Color.WHITE);
+                                Course.setTextSize(12);
+                                Course.setBackgroundResource(R.drawable.course_text_shap);
+                                GradientDrawable myGrad=(GradientDrawable)Course.getBackground();
+                                myGrad.setColor(Color.parseColor(Course_backgroundcolor[k%7]));
 
-                                //Course.setTextColor(0xffff00ff);
+
+
+
+
+
+
 
 
                                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) Course.getLayoutParams();
@@ -164,9 +179,9 @@ public class SyllabusActivity extends AppCompatActivity {
                                         getPixelsFromDp((courseorder_begin-1)*60),
                                         0,0);
                                 Course.setLayoutParams(params);
-                                //System.out.println("b1"+(courseorder_begin-1)*60);
-                                //System.out.println("b2"+getPixelsFromDp((courseorder_begin-1)*60));
-                                Course.setBackgroundColor(Color.parseColor(Course_backgroundcolor[k%7]));
+
+
+
 
                                 editor.putInt("id"+k, id);
                                 editor.putString("content"+k, content);
@@ -175,6 +190,7 @@ public class SyllabusActivity extends AppCompatActivity {
                                 editor.putInt("courseorder_end"+k,courseorder_end);
                                 editor.apply();
 
+                                //Course.setBackgroundColor(Color.parseColor(Course_backgroundcolor[k%7]));
                                 k=k+1;
 
                                 if (!dors_week.equals("双") && !dors_week.equals("单"))
@@ -209,33 +225,45 @@ public class SyllabusActivity extends AppCompatActivity {
         for(int i=0;i<pref.getInt("count",0);i++)
         {
             int id = pref.getInt("id" + i, 0);
-            int courseorder_begin=pref.getInt("courseorder_begin",0);
-            int courseorder_end=pref.getInt("courseorder_end",0);
+            int courseorder_begin=pref.getInt("courseorder_begin"+i,0);
+            int courseorder_end=pref.getInt("courseorder_end"+i,0);
             String content = pref.getString("content" + i, "");
             String dors_week = pref.getString("dors_week" + i, "");
 
             RelativeLayout relativeLayout=(RelativeLayout) findViewById(id);
-            Course = new TextView(getBaseContext());
-            Course.setLayoutParams(new LinearLayout.LayoutParams(
-                    getPixelsFromDp(80),(courseorder_end-courseorder_begin+1)*60
+            TextView Course = new TextView(getBaseContext());
+            Course.setLayoutParams(new RelativeLayout.LayoutParams(
+                    getPixelsFromDp(60),getPixelsFromDp((courseorder_end-courseorder_begin+1)*59)
             ));
-            Course.setBackgroundColor(Color.YELLOW);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)Course.getLayoutParams();
-            params.setMargins(0, (courseorder_begin-1)*60, 0, 0);// 通过自定义坐标来放置你的控件left, top, right, bottom
+            Course.setText(content);
+            Course.setAlpha(0.9f);
+            Course.setTextColor(Color.WHITE);
+            Course.setTextSize(12);
+            Course.setBackgroundResource(R.drawable.course_text_shap);
+            GradientDrawable myGrad=(GradientDrawable)Course.getBackground();
+            myGrad.setColor(Color.parseColor(Course_backgroundcolor[i%7]));
+
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) Course.getLayoutParams();
+            params.setMargins(0,
+                    getPixelsFromDp((courseorder_begin-1)*60),
+                    0,0);
             Course.setLayoutParams(params);
-            relativeLayout.addView(Course);
+
 
             if (!dors_week.equals("双") && !dors_week.equals("单"))
             {
-                Course.setText(content);
+                relativeLayout.addView(Course);
+
             }
             else if (dors_week.equals("双") && cha % 2 == 0)
             {
-                Course.setText(content);
+                relativeLayout.addView(Course);
+
             }
             else if (dors_week.equals("单") && cha % 2 == 1)
             {
-                Course.setText(content);
+                relativeLayout.addView(Course);
+
             }
         }
     }

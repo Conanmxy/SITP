@@ -488,9 +488,9 @@ public class MyOkHttp {
                 }
             });
             OkHttpClient client=builder
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10,TimeUnit.SECONDS)
-                    .writeTimeout(10,TimeUnit.SECONDS)
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5,TimeUnit.SECONDS)
+                    .writeTimeout(5,TimeUnit.SECONDS)
                     .build();
 //密码登录教务处
 //
