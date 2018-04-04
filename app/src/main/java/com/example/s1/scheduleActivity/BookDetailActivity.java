@@ -59,8 +59,9 @@ public class BookDetailActivity extends AppCompatActivity {
                         arrayList.remove(arrayList.size()-1);
 
                         String info=arrayList.get(arrayList.size()-1).get(0);
-                        if(info==null || info=="")
+                        if(info==null || info.equals(""))
                              showIntro.setText("暂时没有简介...");
+                        else showIntro.setText(info);
                         arrayList.remove(arrayList.size()-1);
 
                         adapter=new aBookAdapter(arrayList);

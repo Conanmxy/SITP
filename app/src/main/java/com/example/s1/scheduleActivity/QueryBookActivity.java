@@ -101,7 +101,7 @@ public class QueryBookActivity extends AppCompatActivity {
                                 if(booksList.size()==0)
                                 {
                                     Toast.makeText(QueryBookActivity.this,"没有查询结果！",
-                                            Toast.LENGTH_LONG).show();
+                                            Toast.LENGTH_SHORT).show();
                                 }
                                 else{
                                     recyclerView.setAdapter(booksAdapter);

@@ -54,14 +54,6 @@ public class SyllabusActivity extends AppCompatActivity {
         //获取缓存的用户信息
         SharedPreferences userPrefer=getSharedPreferences("TJuser",MODE_PRIVATE);
 
-        // boolean isIn=userPrefer.getBoolean("isIn",false);
-        // System.out.println("isIn:"+isIn);
-
-
-
-//        userName="1552237";/
-//        password="113803";
-
         if(isFirstRun)
         {
             editor2.putBoolean("FirstRun",false);

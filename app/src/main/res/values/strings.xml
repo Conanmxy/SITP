@@ -11,11 +11,11 @@
     </string>
 
     <string name="about_us">
-        这是一个同济大学SITP项目，目前正在试运营中，由于我们开发团队才疏学浅，可能存在一些bug,还望多加担待。
-        如果您足够热心，希望能把bug反馈给我们，便于我们改善，来信请发：
-        516048741@qq.com
-        如果您是变成爱好这，项目GitHub地址如下：
-        https://github.com/Conanmxy/SITP.git
-        开源改变世界，期待您的参与
+        这是一个同济大学SITP项目，目前正在试运营中，由于我们开发团队才疏学浅，可能存在一些bug,还望多加担待。\n
+        如果您足够热心，希望能把bug反馈给我们，便于我们改善，来信请发：\n
+        516048741@qq.com \n
+        如果您是编程爱好者，项目GitHub地址如下：\n
+        https://github.com/Conanmxy/SITP.git \n
+        开源改变世界，期待您的参与!
     </string>
 </resources>

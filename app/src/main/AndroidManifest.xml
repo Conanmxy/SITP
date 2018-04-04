@@ -9,7 +9,7 @@
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/an2"
+        android:icon="@mipmap/my_diary"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -32,7 +32,7 @@
         <activity android:name=".LoginActivity"></activity>
         <activity
             android:name=".JudgeActivity"
-            android:label="同济">
+            android:label="济事">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

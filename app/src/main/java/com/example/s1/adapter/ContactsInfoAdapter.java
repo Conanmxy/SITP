@@ -91,15 +91,15 @@ public class ContactsInfoAdapter extends BaseExpandableListAdapter {
         }else {
             holder = (GroupViewHolder)view.getTag();
         }
-        if((groupPosition + 1) == Integer.valueOf(nowDate[2])){
-            holder.week.setText("今天，" + "星期" + transitionWeek(nowWeek));
-        }else if((groupPosition + 2) == Integer.valueOf(nowDate[2])){
-            holder.week.setText("昨天，" + "星期" + transitionWeek(nowWeek - 1));
-        }else if((groupPosition) == Integer.valueOf(nowDate[2])){
-            holder.week.setText("明天，" + "星期" + transitionWeek(nowWeek + 1));
-        }else {
-            holder.week.setText("");
-        }
+//        if((groupPosition + 1) == Integer.valueOf(nowDate[2])){
+//           holder.week.setText("今天，" + "星期" + transitionWeek(nowWeek));
+//        }else if((groupPosition + 2) == Integer.valueOf(nowDate[2])){
+//           holder.week.setText("昨天，" + "星期" + transitionWeek(nowWeek - 1));
+//        }else if((groupPosition) == Integer.valueOf(nowDate[2])){
+//           holder.week.setText("明天，" + "星期" + transitionWeek(nowWeek + 1));
+//        }else {
+//            holder.week.setText("");
+//        }
         holder.data.setText(nowDate[1] + "月" +string + "日");
         view.setClickable(false);    //设置不可闭合
 

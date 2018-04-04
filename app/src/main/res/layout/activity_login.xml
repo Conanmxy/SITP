@@ -54,7 +54,7 @@
             android:paddingRight="20dip"
             android:paddingTop="10dip"
             android:text="Login"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
             android:textSize="20dp" />
     </RelativeLayout>
 
